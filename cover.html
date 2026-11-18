@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover - Kamus Digital Bahasa Daerah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      /* Keseimbangan Warna Berdasarkan Ukiran Cokelat Keemasan (#c49a6c) */
+      --bg-color: #f4efe6;
+      --card-bg: rgba(244, 239, 230, 0.88);
+      --text-primary: #3e3223;
+      --text-secondary: #6e5d48;
+      --accent-color: #a37238;
+      --accent-hover: #825724;
+      --shadow-extruded: 8px 8px 18px rgba(138, 114, 83, 0.25), -8px -8px 18px rgba(255, 255, 255, 0.9);
+      --shadow-inset: inset 4px 4px 8px rgba(138, 114, 83, 0.25), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Background Ukiran dengan Overlay Transparan Harmonis */
+      background-image: url('ukiran.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat;
+      background-attachment: fixed;
+      font-family: 'Roboto Mono', monospace;
+      color: var(--text-primary);
+      overflow: hidden;
+    }
+
+    /* Efek Transisi Keluar Halaman (0,5 detik) */
+    .page-transition {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .page-transition.fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    /* Container Cover Utama (Glassmorphism + Neumorphic Warm Tone) */
+    .cover-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: var(--shadow-extruded);
+      max-width: 700px;
+      width: 88%;
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    /* Judul Utama */
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    /* Subjudul */
+    h3 {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 38px;
+      text-transform: uppercase;
+      animation: fadeIn 1s ease-out;
+    }
+
+    /* Tombol Interaktif Neumorphic Warm */
+    .btn-enter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 36px;
+      background: var(--bg-color);
+      color: var(--accent-color);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 12px;
+      box-shadow: var(--shadow-extruded);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-enter:hover {
+      color: var(--accent-hover);
+      box-shadow: var(--shadow-inset);
+      transform: translateY(-1px);
+    }
+
+    .btn-enter:active {
+      transform: translateY(1px);
+    }
+
+    /* Animation Keyframes */
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Footer Info */
+    header.info-footer {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(244, 239, 230, 0.8);
+      padding: 8px 14px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+    header.info-footer h1 {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    header.info-footer p {
+      font-size: 9px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover-card page-transition" id="coverContainer">
+    <!-- Header Title H1 & H3 -->
+    <h1>PROPOSAL PENGAJUAN</h1>
+    <h3>PENGEMBANGAN APLIKASI KAMUS DIGITAL BAHASA DAERAH BERBASIS WEB & MOBILE</h3>
+
+    <!-- Tombol Interaktif ke proposal.html -->
+    <a href="proposal.html" class="btn-enter" id="enterBtn">
+      <span>Buka Proposal</span>
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <header class="info-footer">
+    <h1>Kamus Bahasa Daerah</h1>
+    <p>Design by • Edo Erpani</p>
+  </header>
+
+  <!-- Script Penanganan Animasi Transisi 0,5 Detik Saat Diklik -->
+  <script>
+    const enterBtn = document.getElementById('enterBtn');
+    const coverContainer = document.getElementById('coverContainer');
+
+    enterBtn.addEventListener('click', function(e) {
+      e.preventDefault(); 
+      const targetUrl = this.getAttribute('href');
+
+      coverContainer.classList.add('fade-out');
+
+      setTimeout(function() {
+        window.location.href = targetUrl;
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
