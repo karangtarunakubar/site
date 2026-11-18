@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Organisasi Hirarki & Kolaborasi - Teamwork</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+      background-color: #e0e5ec;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #e0e5ec;
+      color: #3d4852;
+      font-family: monospace;
+      font-size: 10px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      padding: 5px;
+    }
+    li { list-style: none; }
+    section.window {
+      background: #e0e5ec;
+      border-radius: 12px;
+      box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 15px;
+    }
+    .thick {
+      background: #e0e5ec;
+      border-radius: 8px;
+      box-shadow: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+      padding: 10px;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 11px;
+    }
+    .thin {
+      background: #e0e5ec;
+      border-radius: 8px;
+      box-shadow: 4px 4px 8px #b8b9be, -4px -4px 8px #ffffff;
+      padding: 8px;
+      text-align: center;
+    }
+    /* Org Chart Hierarchy */
+    .tree { display: block; width: 100%; text-align: center; margin-bottom: 20px; }
+    .tree ul { padding-top: 15px; position: relative; display: table; margin: 0 auto; }
+    .tree li { display: table-cell; text-align: center; list-style-type: none; position: relative; padding: 15px 4px 0 4px; vertical-align: top; }
+    .tree li::before, .tree li::after {
+      content: ''; position: absolute; top: 0; right: 50%;
+      border-top: 2px solid #007bff; width: 50%; height: 15px;
+    }
+    .tree li::after { right: auto; left: 50%; border-left: 2px solid #007bff; }
+    .tree li:only-child::after, .tree li:only-child::before { display: none; }
+    .tree li:only-child { padding-top: 0; }
+    .tree li:first-child::before, .tree li:last-child::after { border: none; }
+    .tree li:last-child::before { border-right: 2px solid #007bff; border-radius: 0 4px 0 0; }
+    .tree li:first-child::after { border-radius: 4px 0 0 0; }
+    .tree ul ul::before {
+      content: ''; position: absolute; top: 0; left: 50%;
+      border-left: 2px solid #007bff; width: 0; height: 15px;
+    }
+    .node-card {
+      display: inline-block;
+      width: 110px;
+      background: #e0e5ec;
+      box-shadow: 4px 4px 8px #b8b9be, -4px -4px 8px #ffffff;
+      border-radius: 8px;
+      padding: 8px;
+    }
+    .avatar-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 4px;
+      box-shadow: inset 2px 2px 4px #b8b9be, inset -2px -2px 4px #ffffff;
+    }
+    .node-card h4 { font-size: 9px; margin-bottom: 2px; }
+    .node-card p { font-size: 8px; opacity: 0.8; }
+
+    /* Grid Kolaborasi */
+    .collab-grid { display: table; width: 100%; margin-top: 10px; table-layout: fixed; }
+    .collab-cell { display: table-cell; padding: 0 6px; }
+    
+    header.info-footer { margin-top: 15px; text-align: center; }
+    header.info-footer h1 { font-size: 10px; font-weight: bold; }
+    header.info-footer p { font-size: 8px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <section class="window">
+    <h3 class="thick">STRUKTUR ORGANISASI HIRARKI TIM</h3>
+
+    <div class="tree">
+      <ul>
+        <li>
+          <div class="node-card">
+            <img src="https://ui-avatars.com/api/?name=Edo+Erpani&background=007bff&color=fff&bold=true" alt="Edo Erpani" class="avatar-img">
+            <h4>Edo Erpani</h4>
+            <p>Project Manager</p>
+          </div>
+          <ul>
+            <li>
+              <div class="node-card">
+                <img src="https://ui-avatars.com/api/?name=Rian+Jaya&background=a37238&color=fff&bold=true" alt="Rian Rama Wijaya" class="avatar-img">
+                <h4>Rian Rama Wijaya</h4>
+                <p>Lead Linguist</p>
+              </div>
+              <ul>
+                <li>
+                  <div class="node-card">
+                    <img src="https://ui-avatars.com/api/?name=Marshella&background=6e5d48&color=fff&bold=true" alt="Marshella" class="avatar-img">
+                    <h4>Marsella Edison</h4>
+                    <p>Transcriber</p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="node-card">
+                <img src="https://ui-avatars.com/api/?name=Indra+Helat&background=a37238&color=fff&bold=true" alt="Indra Helat" class="avatar-img">
+                <h4>Indra Helat</h4>
+                <p>Field Researcher</p>
+              </div>
+            </li>
+            <li>
+              <div class="node-card">
+                <img src="https://ui-avatars.com/api/?name=Stalizer&background=a37238&color=fff&bold=true" alt="Stalizer" class="avatar-img">
+                <h4>Stalizer</h4>
+                <p>Audio Engineer</p>
+              </div>
+              <ul>
+                <li>
+                  <div class="node-card">
+                    <img src="https://ui-avatars.com/api/?name=Albert&background=a37238&color=fff&bold=true" alt="Albert Natanyahoe" class="avatar-img">
+                    <h4>Albert Natanyahoe</h4>
+                    <p>Symbols Aksara</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node-card">
+                    <img src="https://ui-avatars.com/api/?name=Doni&background=a37238&color=fff&bold=true" alt="Doni Heres Ekananta" class="avatar-img">
+                    <h4>Doni Heres Ekananta</h4>
+                    <p>Aksen Fontetik</p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="node-card">
+                <img src="https://ui-avatars.com/api/?name=Windy&background=a37238&color=fff&bold=true" alt="Windy" class="avatar-img">
+                <h4>Windy</h4>
+                <p>Data Engineer</p>
+              </div>
+              <ul>
+                <li>
+                  <div class="node-card">
+                    <img src="https://ui-avatars.com/api/?name=Audrey&background=a37238&color=fff&bold=true" alt="Audrey" class="avatar-img">
+                    <h4>Audrey</h4>
+                    <p>Notebook</p>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="node-card">
+                        <img src="https://ui-avatars.com/api/?name=Rudini&background=a37238&color=fff&bold=true" alt="Rudini" class="avatar-img">
+                        <h4>Rudani Andi</h4>
+                        <p>Dataset</p>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="node-card">
+                <img src="https://ui-avatars.com/api/?name=Theresia&background=a37238&color=fff&bold=true" alt="Theresia" class="avatar-img">
+                <h4>Theresia</h4>
+                <p>Quality Control</p>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h3 class="thick" style="margin-top: 15px;">PROSES KOLABORASI TIM & WORKFLOW</h3>
+
+    <div class="collab-grid">
+      <div class="collab-cell">
+        <div class="thin">
+          <h4 style="margin: 3px 0;">1. Komunikasi</h4>
+          <p style="font-size: 8px;">Slack & Zoom Daily</p>
+        </div>
+      </div>
+      <div class="collab-cell">
+        <div class="thin">
+          <h4 style="margin: 3px 0;">2. Agile Tasks</h4>
+          <p style="font-size: 8px;">Trello & Jira Board</p>
+        </div>
+      </div>
+      <div class="collab-cell">
+        <div class="thin">
+          <h4 style="margin: 3px 0;">3. Version Control</h4>
+          <p style="font-size: 8px;">GitHub & GitLab CI/CD</p>
+        </div>
+      </div>
+      <div class="collab-cell">
+        <div class="thin">
+          <h4 style="margin: 3px 0;">4. Dokumen</h4>
+          <p style="font-size: 8px;">Notion & Google Docs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <header class="info-footer">
+    <h1>Teamwork | Kamus Bahasa Daerah</h1>
+    <p>Design by • Edo Erpani</p>
+  </header>
+</body>
+</html>
