@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organisasi Hirarki & Kolaborasi - Teamwork</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --bg-color: #e0e5ec;
+      --text-color: #3d4852;
+      --accent-color: #007bff;
+      --line-color: #007bff;
+      --shadow-extruded: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff;
+      --shadow-inset: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      padding: 20px;
+    }
+    li { list-style: none; }
+    nav.controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav.controls a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      height: 45px;
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-extruded);
+      color: var(--text-color);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    nav.controls a.active, nav.controls a:hover {
+      color: var(--accent-color);
+      box-shadow: var(--shadow-inset);
+    }
+    section.window {
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: var(--shadow-extruded);
+      max-width: 1050px;
+      margin: 80px auto 40px auto;
+      padding: 30px;
+    }
+    .thick {
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-inset);
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .thin {
+      background: var(--bg-color);
+      border-radius: 10px;
+      box-shadow: var(--shadow-extruded);
+      padding: 12px;
+      text-align: center;
+    }
+    /* Org Chart Hierarchy */
+    .tree { display: flex; justify-content: center; margin-bottom: 40px; }
+    .tree ul { padding-top: 20px; position: relative; display: flex; justify-content: center; }
+    .tree li { float: left; text-align: center; list-style-type: none; position: relative; padding: 20px 8px 0 8px; }
+    .tree li::before, .tree li::after {
+      content: ''; position: absolute; top: 0; right: 50%;
+      border-top: 2px solid var(--line-color); width: 50%; height: 20px;
+    }
+    .tree li::after { right: auto; left: 50%; border-left: 2px solid var(--line-color); }
+    .tree li:only-child::after, .tree li:only-child::before { display: none; }
+    .tree li:only-child { padding-top: 0; }
+    .tree li:first-child::before, .tree li:last-child::after { border: none; }
+    .tree li:last-child::before { border-right: 2px solid var(--line-color); border-radius: 0 5px 0 0; }
+    .tree li:first-child::after { border-radius: 5px 0 0 0; }
+    .tree ul ul::before {
+      content: ''; position: absolute; top: 0; left: 50%;
+      border-left: 2px solid var(--line-color); width: 0; height: 20px;
+    }
+    .node-card {
+      display: inline-block;
+      min-width: 130px;
+      background: var(--bg-color);
+      box-shadow: var(--shadow-extruded);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .node-card i { font-size: 18px; color: var(--accent-color); margin-bottom: 4px; }
+    .node-card h4 { font-size: 10px; margin-bottom: 2px; }
+    .node-card p { font-size: 9px; opacity: 0.8; }
+
+    /* Grid Kolaborasi */
+    .collab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+    header.info-footer { position: fixed; bottom: 20px; left: 20px; z-index: 1; }
+    header.info-footer h1 { font-size: 11px; font-weight: 700; }
+    header.info-footer p { font-size: 9px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <nav class="controls">
+    <a href="proposal.html">Proposal</a>
+    <a href="teamwork.html" class="active">Teamwork</a>
+    <a href="team.html">Team & Flow</a>
+    <a href="rab.html">RAB & Env</a>
+    <a href="about.html">About Us</a>
+  </nav>
+  <section class="window">
+  <h3 class="thick">STRUKTUR ORGANISASI HIRARKI TIM</h3>
+
+  <!-- Org Chart dengan Avatar Image -->
+  <div class="tree">
+    <ul>
+      <li>
+        <div class="node-card">
+          <img src="https://ui-avatars.com/api/?name=Edo+Erpani&background=007bff&color=fff&bold=true" alt="Edo Erpani" class="avatar-img">
+          <h4>Edo Erpani</h4>
+          <p>Project Manager</p>
+        </div>
+        <ul>
+          <li>
+            <div class="node-card">
+              <img src="https://ui-avatars.com/api/?name=Rian+Jaya&background=a37238&color=fff&bold=true" alt="Rian Rama Wijaya" class="avatar-img">
+              <h4>Rian Rama Wijaya</h4>
+              <p>Lead Linguist</p>
+            </div>
+            <ul>
+              <li>
+                <div class="node-card">
+                  <img src="https://ui-avatars.com/api/?name=Marshella&background=6e5d48&color=fff&bold=true" alt="Marshella" class="avatar-img">
+                  <h4>Marsella Edison</h4>
+                  <p>Transcriber</p>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="node-card">
+              <img src="https://ui-avatars.com/api/?name=Indra+Helat&background=a37238&color=fff&bold=true" alt="Indra Helat" class="avatar-img">
+              <h4>Indra Helat</h4>
+              <p>Field Researcher</p>
+            </div>
+          </li>
+          <li>
+            <div class="node-card">
+              <img src="https://ui-avatars.com/api/?name=Stalizer&background=a37238&color=fff&bold=true" alt="Stalizer" class="avatar-img">
+              <h4>Stalizer</h4>
+              <p>Audio Engineer</p>
+            </div>
+            <ul>
+              <li>
+                 <div class="node-card">
+                 <img src="https://ui-avatars.com/api/?name=Stalizer&background=a37238&color=fff&bold=true" alt="Albert_natayahoe" class="avatar-img">
+              <h4>Albert Natanyahoe</h4>
+              <p>Symbols Aksara</p>
+            </div>
+              <li>
+                 <div class="node-card">
+                 <img src="https://ui-avatars.com/api/?name=Stalizer&background=a37238&color=fff&bold=true" alt="Stalizer" class="avatar-img">
+              <h4>Doni Heres Ekananta</h4>
+              <p>Aksen Fontetik</p>
+            </div>
+              </li>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="node-card">
+              <img src="https://ui-avatars.com/api/?name=Windy&background=a37238&color=fff&bold=true" alt="Windy" class="avatar-img">
+              <h4>indy</h4>
+              <p>Data Engineer</p>
+            </div>
+            <ul>
+              <li>
+                 <div class="node-card">
+              <img src="https://ui-avatars.com/api/?name=Stalizer&background=a37238&color=fff&bold=true" alt="Stalizer" class="avatar-img">
+              <h4>Audrey</h4>
+              <p>Notebook</p>
+            </div>
+            <li>
+               <ul>
+              <li>
+                 <div class="node-card">
+                 <img src="https://ui-avatars.com/api/?name=Stalizer&background=a37238&color=fff&bold=true" alt="Stalizer" class="avatar-img">
+              <h4>Rudani Andi</h4>
+              <p>Dataset</p>
+            </div>
+              </li>
+            </ul>
+            </li>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="node-card">
+              <img src="https://ui-avatars.com/api/?name=Theresia&background=a37238&color=fff&bold=true" alt="Theresia" class="avatar-img">
+              <h4>Theresia</h4>
+              <p>Quality Control</p>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+    <h3 class="thick">PROSES KOLABORASI TIM & WORKFLOW</h3>
+
+    <div class="collab-grid">
+      <div class="thin">
+        <i class="fa fa-comments" style="font-size: 16px; color: var(--accent-color);"></i>
+        <h4 style="margin: 5px 0;">1. Komunikasi</h4>
+        <p style="font-size: 9px;">Slack & Zoom Daily Standup</p>
+      </div>
+      <div class="thin">
+        <i class="fa fa-tasks" style="font-size: 16px; color: var(--accent-color);"></i>
+        <h4 style="margin: 5px 0;">2. Agile Tasks</h4>
+        <p style="font-size: 9px;">Trello & Jira Board</p>
+      </div>
+      <div class="thin">
+        <i class="fa fa-code-fork" style="font-size: 16px; color: var(--accent-color);"></i>
+        <h4 style="margin: 5px 0;">3. Version Control</h4>
+        <p style="font-size: 9px;">GitHub & GitLab CI/CD</p>
+      </div>
+      <div class="thin">
+        <i class="fa fa-book" style="font-size: 16px; color: var(--accent-color);"></i>
+        <h4 style="margin: 5px 0;">4. Dokumen</h4>
+        <p style="font-size: 9px;">Notion & Google Docs</p>
+      </div>
+    </div>
+  </section>
+
+  <header class="info-footer">
+    <h1>Teamwork| Kamus Bahasa Daerah</h1>
+     <p>Design by • Edo Erpani</p>
+  </header>
+</body>
+</html>
