@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alur Kerja & Implementasi - Team Flow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --bg-color: #e0e5ec;
+      --text-color: #3d4852;
+      --accent-color: #007bff;
+      --shadow-extruded: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff;
+      --shadow-inset: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      padding: 20px;
+    }
+    li { list-style: none; }
+    
+    /* Navigasi Menu Atas */
+    nav.controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav.controls a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      height: 45px;
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-extruded);
+      color: var(--text-color);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    nav.controls a.active, nav.controls a:hover {
+      color: var(--accent-color);
+      box-shadow: var(--shadow-inset);
+    }
+
+    /* Container Utama */
+    section.window {
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: var(--shadow-extruded);
+      max-width: 950px;
+      margin: 80px auto 40px auto;
+      padding: 30px;
+    }
+    .thick {
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-inset);
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* Tab Navigasi Workflow */
+    .tab-nav {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--bg-color);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: var(--shadow-extruded);
+      color: var(--text-color);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .tab-btn:hover { color: var(--accent-color); }
+    .tab-btn.active {
+      box-shadow: var(--shadow-inset);
+      color: var(--accent-color);
+    }
+
+    /* Panel Konten Tab dengan Animasi Smooth */
+    .tab-content-container {
+      position: relative;
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-inset);
+      padding: 25px;
+      margin-bottom: 30px;
+      min-height: 180px;
+    }
+    .tab-pane {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      padding: 25px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      will-change: opacity, transform;
+    }
+    .tab-pane.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      position: relative; /* Mengembalikan struktur flow dokumen saat aktif */
+    }
+
+    .pane-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .pane-grid { grid-template-columns: 1fr; }
+    }
+
+    .thin {
+      background: var(--bg-color);
+      border-radius: 10px;
+      box-shadow: var(--shadow-extruded);
+      padding: 15px;
+    }
+    ul.content li { border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 5px 0; }
+    ul.content li:last-child { border-bottom: none; }
+
+    /* Tim Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    header.info-footer { position: fixed; bottom: 20px; left: 20px; z-index: 1; }
+    header.info-footer h1 { font-size: 11px; font-weight: 700; }
+    header.info-footer p { font-size: 9px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <nav class="controls">
+    <a href="proposal.html">Proposal</a>
+    <a href="teamwork.html">Teamwork</a>
+    <a href="team.html" class="active">Team & Flow</a>
+    <a href="rab.html">RAB & Env</a>
+    <a href="about.html">About Us</a>
+  </nav>
+
+  <section class="window">
+    <h3 class="thick">STRUKTUR ALUR KERJA PENGAMBILAN DATA & IMPLEMENTASI</h3>
+    
+    <!-- Tab Navigation Buttons -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(0)">1. Persiapan</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. Perekaman</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. Verifikasi</button>
+      <button class="tab-btn" onclick="switchTab(3)">4. Database</button>
+    </div>
+
+    <!-- Tab Panels Container (Preview & Implementation Details) -->
+    <div class="tab-content-container">
+      
+      <!-- Panel 1: Persiapan -->
+      <div class="tab-pane active" id="pane-0">
+        <div class="pane-grid">
+          <div>
+            <h4 style="color: var(--accent-color); margin-bottom: 10px; font-size: 12px;">Fase 1: Perencanaan Lapangan</h4>
+            <ul class="content">
+              <li>Pemilihan wilayah dialek target</li>
+              <li>Penyusunan Daftar Swadesh (200 kosa kata)</li>
+              <li>Perizinan & Informed Consent Penutur Asli</li>
+            </ul>
+          </div>
+          <div class="thin" style="box-shadow: var(--shadow-extruded);">
+            <p style="font-weight: 700; margin-bottom: 5px;"><i class="fa fa-info-circle"></i> Implementasi Preview:</p>
+            <p style="font-size: 10px; opacity: 0.8;">Tim Peneliti mendatangi titik lokasi masyarakat adat untuk memetakan variasi fonetik menggunakan instrumen kuesioner digital.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Perekaman -->
+      <div class="tab-pane" id="pane-1">
+        <div class="pane-grid">
+          <div>
+            <h4 style="color: var(--accent-color); margin-bottom: 10px; font-size: 12px;">Fase 2: Pengambilan Audio</h4>
+            <ul class="content">
+              <li>Elicitation & Wawancara Terstruktur</li>
+              <li>Rekaman Audio WAV 24-bit/48kHz</li>
+              <li>Penyematan Metadata GPS & Waktu</li>
+            </ul>
+          </div>
+          <div class="thin" style="box-shadow: var(--shadow-extruded);">
+            <p style="font-weight: 700; margin-bottom: 5px;"><i class="fa fa-microphone"></i> Implementasi Preview:</p>
+            <p style="font-size: 10px; opacity: 0.8;">Audio direkam menggunakan perangkat keras peredam bising portabel guna menghasilkan sampel suara fonem yang bersih.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Verifikasi -->
+      <div class="tab-pane" id="pane-2">
+        <div class="pane-grid">
+          <div>
+            <h4 style="color: var(--accent-color); margin-bottom: 10px; font-size: 12px;">Fase 3: Validasi Linguistik</h4>
+            <ul class="content">
+              <li>Audio Denoising & Normalisasi Frekuensi</li>
+              <li>Transkripsi International Phonetic Alphabet (IPA)</li>
+              <li>Quality Control oleh Ahli Bahasa Daerah</li>
+            </ul>
+          </div>
+          <div class="thin" style="box-shadow: var(--shadow-extruded);">
+            <p style="font-weight: 700; margin-bottom: 5px;"><i class="fa fa-check-square"></i> Implementasi Preview:</p>
+            <p style="font-size: 10px; opacity: 0.8;">Penyuntingan gelombang suara dan pencocokan simbol fonetik agar valid sebelum dimasukkan ke dalam sistem basis data.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Database -->
+      <div class="tab-pane" id="pane-3">
+        <div class="pane-grid">
+          <div>
+            <h4 style="color: var(--accent-color); margin-bottom: 10px; font-size: 12px;">Fase 4: Integrasi Sistem</h4>
+            <ul class="content">
+              <li>Strukturisasi Format JSON / CSV</li>
+              <li>Injeksi ke DB Storage Terpusat</li>
+              <li>Indexing API untuk Web & Mobile Apps</li>
+            </ul>
+          </div>
+          <div class="thin" style="box-shadow: var(--shadow-extruded);">
+            <p style="font-weight: 700; margin-bottom: 5px;"><i class="fa fa-database"></i> Implementasi Preview:</p>
+            <p style="font-size: 10px; opacity: 0.8;">Data siap diakses secara publik melalui antarmuka web interaktif dan aplikasi mobile lintas platform.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h3 class="thick">PERAN DAN TANGGUNG JAWAB TIM</h3>
+
+    <div class="team-grid">
+      <div class="thin"><h3>Edo Erpani</h3><p>Project Manager</p></div>
+      <div class="thin"><h3>Rian Jaya</h3><p>Lead Linguist</p></div>
+      <div class="thin"><h3>Indra Helat</h3><p>Field Researcher</p></div>
+      <div class="thin"><h3>Stalizer</h3><p>Audio Engineer</p></div>
+      <div class="thin"><h3>Marshella</h3><p>Transcriber</p></div>
+      <div class="thin"><h3>Windy</h3><p>Data Engineer</p></div>
+      <div class="thin"><h3>Theresia</h3><p>Quality Control</p></div>
+    </div>
+  </section>
+
+  <header class="info-footer">
+    <h1>Team & Flow | Kamus Bahasa Daerah</h1>
+     <p>Design by • Edo Erpani</p>
+  </header>
+
+  <!-- JavaScript Animasi Tab Mulus -->
+  <script>
+    function switchTab(index) {
+      const panes = document.querySelectorAll('.tab-pane');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      panes.forEach((pane, i) => {
+        if (i === index) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+
+      buttons.forEach((btn, i) => {
+        if (i === index) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
