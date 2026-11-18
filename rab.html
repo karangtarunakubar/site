@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAB & Lingkungan Kerja - Kamus Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --bg-color: #e0e5ec;
+      --text-color: #3d4852;
+      --accent-color: #007bff;
+      --shadow-extruded: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff;
+      --shadow-inset: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      text-transform: uppercase;
+      padding: 20px;
+    }
+    li { list-style: none; }
+    nav.controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav.controls a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      height: 45px;
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-extruded);
+      color: var(--text-color);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    nav.controls a.active, nav.controls a:hover {
+      color: var(--accent-color);
+      box-shadow: var(--shadow-inset);
+    }
+    section.window {
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: var(--shadow-extruded);
+      max-width: 950px;
+      margin: 80px auto 40px auto;
+      padding: 40px;
+    }
+    .thin { background: var(--bg-color); border-radius: 10px; box-shadow: var(--shadow-extruded); padding: 18px; margin-bottom: 20px; }
+    .thick { background: var(--bg-color); border-radius: 12px; box-shadow: var(--shadow-inset); padding: 20px; text-align: center; margin-bottom: 25px; font-weight: 700; font-size: 13px; }
+    .sub-title { font-size: 12px; font-weight: 700; color: var(--accent-color); margin-bottom: 8px; }
+    .rab-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    .rab-table th, .rab-table td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 10px; }
+    .rab-table th { color: var(--accent-color); }
+    header.info-footer { position: fixed; bottom: 20px; left: 20px; z-index: 1; }
+    header.info-footer h1 { font-size: 11px; font-weight: 700; }
+    header.info-footer p { font-size: 9px; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <nav class="controls">
+    <a href="proposal.html">Proposal</a>
+    <a href="teamwork.html">Teamwork</a>
+    <a href="team.html">Team & Flow</a>
+    <a href="rab.html" class="active">RAB & Env</a>
+    <a href="about.html">About Us</a>
+  </nav>
+
+  <section class="window">
+    <div class="thick">
+      <h2>RINCIAN ANGGARAN BIAYA (RAB)</h2>
+      <h1 style="font-size: 14px; color: var(--accent-color); margin-top: 5px;">PENGEMBANGAN APLIKASI KAMUS DIGITAL BAHASA DAERAH</h1>
+    </div>
+
+    <div class="thin">
+      <div class="sub-title">1. Tabel Rincian Anggaran Biaya Proyek</div>
+      <table class="rab-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Komponen Pekerjaan</th>
+            <th>Volume</th>
+            <th>Estimasi Biaya</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Perencanaan & Perizinan Lapangan</td>
+            <td>1 Paket</td>
+            <td>Rp 15.000.000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Perekaman Audio Penutur Asli</td>
+            <td>5 Dialek</td>
+            <td>Rp 18.000.000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Software Engineering (Web & Mobile)</td>
+            <td>3 Bulan</td>
+            <td>Rp 35.000.000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Quality Control & Deployment</td>
+            <td>1 System</td>
+            <td>Rp 12.000.000</td>
+          </tr>
+          <tr style="font-weight: bold; background: rgba(0,123,255,0.05);">
+            <td colspan="3" style="text-align: right;">TOTAL:</td>
+            <td style="color: var(--accent-color);">Rp 80.000.000,-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <header class="info-footer">
+    <h1>RAB | Kamus Bahasa Daerah</h1>
+     <p>Design by • Edo Erpani</p>
+  </header>
+
+</body>
+</html>
