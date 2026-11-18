@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html prefix="./site/proposal.html#" lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal Pengajuan - Kamus Digital Bahasa Daerah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --bg-color: #e0e5ec;
+      --text-color: #3d4852;
+      --accent-color: #007bff;
+      --shadow-extruded: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff;
+      --shadow-inset: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Monospace', monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      text-transform: uppercase;
+      padding: 20px;
+    }
+    li { list-style: none; }
+    nav.controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav.controls a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      height: 45px;
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-extruded);
+      color: var(--text-color);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    nav.controls a.active, nav.controls a:hover {
+      color: var(--accent-color);
+      box-shadow: var(--shadow-inset);
+    }
+    section.window {
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: var(--shadow-extruded);
+      max-width: 950px;
+      margin: 80px auto 40px auto;
+      padding: 40px;
+    }
+    .thin {
+      background: var(--bg-color);
+      border-radius: 10px;
+      box-shadow: var(--shadow-extruded);
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+    .thick {
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-inset);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .sub-title { font-size: 12px; font-weight: 700; color: var(--accent-color); margin-bottom: 8px; }
+    ul.content li { border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 6px 0; }
+    ul.content li:last-child { border-bottom: none; }
+      /* CONTAINER UTAMA (Wrapper Flexbox/Grid) */
+    .signature-container {
+      display: flex;
+      flex-wrap: wrap; /* Memungkinkan item turun ke bawah jika layar sempit */
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* KOTAK TANDA TANGAN (Item Neumorphic) */
+    .signature-box {
+      flex: 1 1 220px; /* Lebar fleksibel, minimal 220px */
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-inset); /* Efek coakan Neumorphism */
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover effect lembut */
+    .signature-box:hover {
+      box-shadow: var(--shadow-extruded);
+    }
+
+    /* Area Kosong Tanda Tangan / Stempel */
+    .signature-space {
+      height: 70px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Gambar Tanda Tangan Opsional */
+    .signature-space img {
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .signature-role {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: var(--accent-color);
+    }
+
+    .signature-name {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-top: 1px dashed #b8b9be;
+      padding-top: 5px;
+    }
+
+    .signature-nip {
+      font-size: 10px;
+      color: #6c757d;
+    }
+    .signature-container { display: flex; justify-content: space-between; margin-top: 30px; gap: 20px; }
+    .signature-box { flex: 1; background: var(--bg-color); border-radius: 10px; box-shadow: var(--shadow-inset); padding: 20px; text-align: center; }
+    .signature-space { height: 50px; }
+    header.info-footer { position: fixed; bottom: 20px; left: 20px; z-index: 1; }
+    header.info-footer h1 { font-size: 11px; font-weight: 700; }
+    header.info-footer p { font-size: 9px; opacity: 0.8; }
+    @media (max-width: 768px) { .signature-container { flex-direction: column; } }
+  </style>
+</head>
+<body>
+
+  <nav class="controls">
+    <a href="proposal.html" class="active">Proposal</a>
+    <a href="teamwork.html">Teamwork</a>
+    <a href="team.html">Team & Flow</a>
+    <a href="rab.html">RAB & Env</a>
+    <a href="about.html">About Us</a>
+  </nav>
+
+  <section class="window">
+    <div class="thick">
+      <h2>PROPOSAL PENGAJUAN PROYEK</h2>
+      <h1 style="font-size: 15px; color: var(--accent-color); margin-top: 5px;">PENGEMBANGAN APLIKASI KAMUS DIGITAL BAHASA DAERAH BERBASIS WEB & MOBILE</h1>
+    </div>
+
+    <div class="thin">
+      <div class="sub-title">Informasi Inisiator / Author</div>
+      <p><strong>Ketua Tim:</strong> Edo Erpani</p>
+      <p><strong>Kontak:</strong>
+      0857-5073-3608</p>
+    <p><strong>Email: </strong>
+      erpaniedo6@gmail.com</p>
+      <p><strong>Lokasi:</strong> Kutai Barat, Indonesia</p>
+    </div>
+
+    <div class="thin">
+      <div class="sub-title">1. Latar Belakang & Urgensi Proyek</div>
+      <ul class="content">
+        <li>Mencegah punahnya dialek lokal dan kosakata bahasa daerah akibat dampak modernisasi digital.</li>
+        <li>Kebutuhan platform edukasi digital interaktif berbasis audio bagi sekolah dan masyarakat umum.</li>
+      </ul>
+    </div>
+
+    <div class="thin">
+      <div class="sub-title">2. Maksud & Tujuan</div>
+      <ul class="content">
+        <li>Mendokumentasikan kosakata dan fonetik standar IPA (International Phonetic Alphabet) dari penutur asli.</li>
+        <li>Menyediakan platform multi-akses berbasis Web Responsive dan Aplikasi Mobile.</li>
+      </ul>
+    </div>
+
+   <!-- SIGNATURE CONTAINER UTAMA -->
+  <div class="signature-container">
+    
+    <!-- Box 1: Pihak Pembuat / Diajukan -->
+    <div class="signature-box">
+      <p class="signature-role">Diajukan Oleh:</p>
+      <p>Tim Pengembang</p>
+      <div class="signature-space">
+        <img src="signature1.png" alt="Tanda Tangan">
+      </div>
+      <p class="signature-name">( Edo Erpani )</p>
+      <p class="signature-nip">Project Manager</p>
+    </div>
+      </div>
+          <!-- Box 3: Pihak Pejabat / Disetujui -->
+    <div class="signature-box">
+      <p class="signature-role">Disetujui Oleh:</p>
+      <p>Kepala Dinas Pendidikan & Kebudayaan</p>
+      <div class="signature-space"></div>
+      <p class="signature-name">( Robeter Basersyah, M.Si )</p>
+      <p class="signature-nip">NIP: 19700315 199503 1 001</p>
+    </div>
+
+    </div>
+  </section>
+
+  <header class="info-footer">
+    <h1>Proposal | Kamus Bahasa Daerah</h1>
+     <p>Design by • Edo Erpani</p>
+  </header>
+  
+</body>
+</html>
